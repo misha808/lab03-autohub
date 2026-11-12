@@ -3,6 +3,23 @@
 {% block title %}Автомобілі{% endblock %}
 
 {% block content %}
-<h1 class="text-3xl font-bold mb-4">Автомобілі</h1>
-<p>Сторінка в розробці.</p>
+<h1 class="text-3xl font-bold mb-2">Автомобілі в наявності</h1>
+<p class="text-lg mb-6">Добірка популярних моделей. Для тест-драйву зв'яжіться з нами.</p>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for car in cars %}
+    <article class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow overflow-hidden">
+        <div class="bg-gradient-to-br from-blue-100 to-indigo-100 h-48">
+            <img src="{{ car.photo }}" alt="{{ car.name }}" loading="lazy" class="w-full h-48 object-cover" onerror="this.style.display='none'">
+        </div>
+        <div class="p-4">
+            <span class="inline-block text-xs bg-brand text-white rounded-full px-2 py-0.5 mb-2">{{ car.tag }}</span>
+            <h2 class="text-xl font-bold mb-1">{{ car.name }}</h2>
+            <p class="text-gray-600 mb-3">{{ car.year }} р. · {{ car.fuel }}</p>
+            <p class="text-2xl font-bold text-brand">${{ '{:,}'.format(car.price).replace(',', ' ') }}</p>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+<p class="text-xs text-gray-500 mt-6">Фото: Wikimedia Commons (автори та ліцензії вказані на сторінках файлів).</p>
 {% endblock %}
