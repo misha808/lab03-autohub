@@ -4,5 +4,19 @@
 
 {% block content %}
 <h1 class="text-3xl font-bold mb-4">Зворотний зв'язок</h1>
-<p>Сторінка в розробці.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white rounded-lg shadow p-6 space-y-3">
+        <h2 class="text-xl font-bold">Контакти</h2>
+        <p>📍 вул. Шевченка, 3</p>
+        <p>📞 Телефон: <span class="font-mono">+380 66 861 26 42</span></p>
+        <p>📧 Email: <span class="font-mono">info@autohub.example</span></p>
+        <p>🕒 Пн–Сб: 9:00–19:00, Нд: вихідний.</p>
+    </div>
+    <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-bold mb-3">Часті питання</h2>
+        <details class="mb-2"><summary class="cursor-pointer font-semibold">Чи можна взяти авто в кредит?</summary><p class="mt-1 text-gray-600">Так, допоможемо підібрати програму кредитування.</p></details>
+        <details class="mb-2"><summary class="cursor-pointer font-semibold">Чи є trade-in?</summary><p class="mt-1 text-gray-600">Так, оцінимо ваше авто та зарахуємо його вартість.</p></details>
+        <details><summary class="cursor-pointer font-semibold">Як записатися на тест-драйв?</summary><p class="mt-1 text-gray-600">Зателефонуйте нам або завітайте в салон.</p></details>
+    </div>
+</div>
 {% endblock %}

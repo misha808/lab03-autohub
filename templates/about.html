@@ -4,5 +4,25 @@
 
 {% block content %}
 <h1 class="text-3xl font-bold mb-4">Про нас</h1>
-<p>Сторінка в розробці.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <div class="space-y-4 text-lg">
+        <p>
+            AutoHub — автосалон, який допомагає обрати надійний автомобіль
+            без переплат і неприємних сюрпризів.
+        </p>
+        <p>
+            Наша місія — зробити купівлю авто простою, прозорою та зрозумілою.
+        </p>
+        <ul class="list-disc pl-6">
+            <li>Технічна перевірка кожного авто</li>
+            <li>Прозора історія обслуговування</li>
+            <li>Допомога з документами та кредитом</li>
+        </ul>
+    </div>
+    <div class="grid grid-cols-3 gap-4 text-center">
+        <div class="bg-white rounded-lg shadow p-4"><div class="text-3xl font-bold text-brand">10+</div><div class="text-sm">років досвіду</div></div>
+        <div class="bg-white rounded-lg shadow p-4"><div class="text-3xl font-bold text-brand">500+</div><div class="text-sm">проданих авто</div></div>
+        <div class="bg-white rounded-lg shadow p-4"><div class="text-3xl font-bold text-brand">12 міс</div><div class="text-sm">гарантії</div></div>
+    </div>
+</div>
 {% endblock %}
