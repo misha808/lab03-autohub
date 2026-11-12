@@ -3,6 +3,41 @@
 {% block title %}Головна{% endblock %}
 
 {% block content %}
-<h1 class="text-3xl font-bold mb-4">Головна</h1>
-<p>Сторінка в розробці.</p>
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <div>
+        <h1 class="text-4xl font-bold mb-4">Знайдіть свій ідеальний автомобіль</h1>
+        <p class="text-lg mb-6">
+            AutoHub — автосалон із перевіреними авто з пробігом та новими моделями.
+            Чесна історія обслуговування, гарантія та допомога з оформленням.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3">
+            <a href="{{ url_for('shop') }}" class="bg-brand hover:bg-brand-dark text-white font-bold py-2 px-6 rounded text-center transition-colors">Переглянути авто</a>
+            <a href="{{ url_for('about') }}" class="bg-white hover:bg-gray-200 text-brand font-bold py-2 px-6 rounded text-center border border-brand transition-colors">Про нас</a>
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="w-full max-w-sm aspect-square rounded-2xl shadow-lg bg-gradient-to-br from-brand to-indigo-600 flex items-center justify-center text-9xl">🚗</div>
+    </div>
+</section>
+
+<section class="mt-12">
+    <h2 class="text-2xl font-bold mb-4">Чому AutoHub</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bg-white rounded-lg shadow p-5">
+            <div class="text-3xl mb-2">🔍</div>
+            <h3 class="font-bold mb-1">Перевірені авто</h3>
+            <p>Кожен автомобіль проходить технічну діагностику перед продажем.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-5">
+            <div class="text-3xl mb-2">🛡️</div>
+            <h3 class="font-bold mb-1">Гарантія</h3>
+            <p>Надаємо гарантію та сервісну підтримку після купівлі.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-5 sm:col-span-2 lg:col-span-1">
+            <div class="text-3xl mb-2">💳</div>
+            <h3 class="font-bold mb-1">Кредит і Trade-in</h3>
+            <p>Допоможемо з кредитом або обміном вашого авто на нове.</p>
+        </div>
+    </div>
+</section>
 {% endblock %}

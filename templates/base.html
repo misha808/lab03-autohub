@@ -4,19 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}AutoHub{% endblock %} — AutoHub</title>
+    <!-- Tailwind CSS 4 через CDN (для навчання та прототипів) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-brand: #229ed9;
+            --color-brand-dark: #1a7fb0;
+        }
+    </style>
+    <style>
+        /* Три лінії «бургера» */
+        .burger-line { transition: all 0.3s ease-in-out; }
+        .line1 { top: 4px; }
+        .line2 { top: 11px; }
+        .line3 { top: 18px; }
+        .open .line1 { transform: translateY(7px) rotate(45deg); }
+        .open .line2 { opacity: 0; }
+        .open .line3 { transform: translateY(-7px) rotate(-45deg); }
+    </style>
 </head>
-<body class="bg-gray-100">
-    <nav class="bg-blue-500 p-4">
-        <div class="container mx-auto flex gap-4">
-            <a href="{{ url_for('home') }}" class="text-white font-bold">AutoHub</a>
+<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
+    <nav class="bg-brand p-4 shadow">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{{ url_for('home') }}" class="text-white text-xl font-bold transition-transform duration-300 hover:scale-110">🚗 AutoHub</a>
+
+            <!-- Меню для широких екранів (генерується циклом із NAV_ITEMS) -->
+            <div class="hidden md:flex space-x-6">
+                {% for endpoint, label in nav_items %}
+                <a href="{{ url_for(endpoint) }}"
+                   class="text-white transition-colors duration-300 hover:underline {{ 'font-bold underline' if current == endpoint else 'hover:text-blue-100' }}">{{ label }}</a>
+                {% endfor %}
+            </div>
+
+            <!-- Кнопка меню для мобільних пристроїв -->
+            <button id="mobile-menu-button" type="button" aria-label="Відкрити меню" aria-expanded="false"
+                    class="md:hidden text-white w-6 h-6 relative cursor-pointer focus:outline-none">
+                <span class="burger-line line1 block absolute left-0 h-0.5 w-6 bg-current"></span>
+                <span class="burger-line line2 block absolute left-0 h-0.5 w-6 bg-current"></span>
+                <span class="burger-line line3 block absolute left-0 h-0.5 w-6 bg-current"></span>
+            </button>
+        </div>
+
+        <!-- Мобільне меню -->
+        <div id="mobile-menu" class="hidden md:hidden container mx-auto mt-2">
             {% for endpoint, label in nav_items %}
-            <a href="{{ url_for(endpoint) }}" class="text-white">{{ label }}</a>
+            <a href="{{ url_for(endpoint) }}"
+               class="block text-white py-2 transition duration-300 hover:translate-x-2 {{ 'font-bold' if current == endpoint }}">{{ label }}</a>
             {% endfor %}
         </div>
     </nav>
-    <main class="container mx-auto mt-8 p-4">
+
+    <main class="container mx-auto mt-8 p-4 flex-1">
         {% block content %}{% endblock %}
     </main>
+
+    <footer class="bg-gray-800 text-gray-300 text-center text-sm p-4 mt-8">
+        © 2026 AutoHub — автосалон з широким вибором перевірених автомобілів. Навчальний проєкт.
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            const isOpen = btn.classList.toggle('open');
+            btn.setAttribute('aria-expanded', isOpen);
+            btn.setAttribute('aria-label', isOpen ? 'Закрити меню' : 'Відкрити меню');
+            menu.classList.toggle('hidden', !isOpen);
+        });
+    </script>
 </body>
 </html>
